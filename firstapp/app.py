@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///test.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///test.sqlite3'
 db = SQLAlchemy(app)
 
 # this model of task for task manager
@@ -17,7 +17,7 @@ class Task(db.Model):
         return f"<Task {self.id}>"
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
