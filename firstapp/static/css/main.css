@@ -5,16 +5,50 @@
   font-family: sans-serif;
 }
 
-h1 {
-  text-align: center;
-  margin: 20px 0 20px 0;
+body {
+  background-color: #fff7ee;
 }
 
-table {
+.container {
+  max-width: 1080px;
   margin: 0 auto;
 }
 
-th, td {
-  display: inline-block;
-  margin-left: 10px;
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 600px
+}
+
+h1 {
+  margin: 10px;
+  text-align: center;
+}
+
+a {
+  text-decoration: underline dotted #001f26;
+  font-weight: bold;
+  color: #044414;
+  transition: all .2 ease
+}
+
+a:hover {
+  color: green;
+}
+
+table {
+  flex: 1 0 10%;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 15px;
+  background-color: #c5f2ab;
+  color: #044414;
+  box-shadow: 3px 3px 7px #012403;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+}
+
+.form {
+  margin: 20px auto;
 }

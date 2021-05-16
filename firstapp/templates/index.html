@@ -5,12 +5,30 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Task Manager</h1>
-  <table>
-    <tr>
-      <th>Task</th>
-      <th>Added</th>
-      <th>Actions</th>
-    </tr>
-  </table>
+<div class="container">
+  <h1>Task manager</h1>
+  <div class="content">
+    <table>
+      <tr>
+        <th>Task</th>
+        <th>Added</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <td>Example</td>
+        <td>16.05.2021 12:30</td>
+        <td>
+          <a href="#">Update</a><br>
+          <a href="#">Delate</a>
+        </td>
+      </tr>
+    </table>
+    <div class="form">
+      <form action="#" method="post">
+        <input type="text" name="task">
+        <input type="submit" name="submit" value="Add task">
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
