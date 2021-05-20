@@ -17,10 +17,10 @@
       {% for task in tasks %}
         <tr>
           <td>{{ task.content }}</td>
-          <td>{{ task.created_at }}</td>
+          <td>{{ task.created_at.date() }}</td>
           <td>
-            <a href="#">Update</a><br>
-            <a href="#">Delete</a>
+            <a href="/update/{{ task.id }}">Update</a><br>
+            <a href="/delete/{{ task.id }}">Delete</a>
           </td>
         </tr>
       {% endfor %}

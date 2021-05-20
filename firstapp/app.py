@@ -28,15 +28,39 @@ def index():
             db.session.commit()
             return redirect('/')
         except:
-            return "There was some error!"
+            return "There was some error while adding!"
 
     else:
         tasks = Task.query.order_by(Task.created_at).all()
         return render_template('index.html', tasks=tasks)
 
-@app.route("/users/<name>")
-def user(name):
-    return f"Hello {name}"
+
+@app.route('/delete/<id>')
+def delete(id):
+    task = Task.query.get_or_404(id)
+
+    try:
+        db.session.delete(task)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return "There was some error while deleting!"
+
+
+@app.route('/update/<id>', methods=['GET', 'POST'])
+def update(id):
+    task = Task.query.get_or_404(id)
+
+    if request.method == 'POST':
+        task.content = request.form['task']
+
+        try:
+            db.session.commit()
+        except:
+            return "There was some error while updating!"
+        return redirect('/')
+    else:
+        return render_template('update.html', task=task)
 
 
 if __name__ == "__main__":
