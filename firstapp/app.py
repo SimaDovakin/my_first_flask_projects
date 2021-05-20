@@ -1,10 +1,11 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///test.sqlite3'
+app.config["SECRET_KEY"] = ')7m2R@7-46@gak88G()HSEY&t)3eTcHz'
 db = SQLAlchemy(app)
 
 # this model of task for task manager
@@ -26,9 +27,11 @@ def index():
         try:
             db.session.add(task)
             db.session.commit()
+            flash("Successfuly added!!!", category='success')
             return redirect('/')
         except:
-            return "There was some error while adding!"
+            flash("There was some error while adding!", category='error')
+            return redirect('/')
 
     else:
         tasks = Task.query.order_by(Task.created_at).all()
@@ -44,7 +47,8 @@ def delete(id):
         db.session.commit()
         return redirect('/')
     except:
-        return "There was some error while deleting!"
+        flash("There was some error while deleting!", category='error')
+        return redirect('/')
 
 
 @app.route('/update/<id>', methods=['GET', 'POST'])

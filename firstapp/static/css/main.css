@@ -21,7 +21,7 @@ body {
   max-width: 600px
 }
 
-h1 {
+h1, h4 {
   margin: 10px;
   text-align: center;
 }
@@ -51,4 +51,12 @@ table {
 
 .form {
   margin: 20px auto;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
 }
