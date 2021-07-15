@@ -10,13 +10,13 @@
   <div class="content">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        <ul class="messages">
+        <div class="messages">
           {% for category, message in messages %}
-            <li>
+            <div>
                 <span class="{{ category }}">{{ message }}</span>
-            </li>
+            </div>
           {% endfor %}
-        </ul>
+        </div>
       {% endif %}
     {% endwith %}
     {% if tasks|length < 1 %}
