@@ -21,8 +21,12 @@ class Task(db.Model):
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
-        task_content = request.form['task']
-        task = Task(content=task_content)
+        task_content = request.form['task'].strip()
+        if task_content:
+            task = Task(content=task_content)
+        else:
+            flash("You can't add an empty task!", category='error')
+            return redirect('/')
 
         try:
             db.session.add(task)
@@ -41,10 +45,12 @@ def index():
 @app.route('/delete/<id>')
 def delete(id):
     task = Task.query.get_or_404(id)
+    task_id = task.id
 
     try:
         db.session.delete(task)
         db.session.commit()
+        flash(f"Task with id {task_id} deleted successfuly", category='success')
         return redirect('/')
     except:
         flash("There was some error while deleting!", category='error')
